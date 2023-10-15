@@ -7,6 +7,39 @@ by Tom Igoe
 var myDevice;
 var myService = 0x181a;        // fill in a service you're looking for here
 var myCharacteristic = 0xffb2;   // fill in a characteristic from the service here
+let currentDate = new Date(); 
+let words=[ "Yes","No","Hello","Please","Thank You","Help","All Done","Wait","Hungry","Thirsty", "Hungry", "I Love You","My Turn","Quiet","More"]
+
+const intervalHandle = setInterval(update, 1000);
+// clearInterval(intervalHandle);
+
+//arrays of arrays
+let buttonCache=new Set([]);
+//will update the history with recieved information
+function update(){
+  if(buttonCache.size>0){
+//remove duplicates
+//buttonCache.filter((item,index) => buttonCache.indexOf(item) === index);
+console.log(buttonCache)
+
+
+let wordnum = 0;
+buttonCache.forEach (function(value) {
+  wordnum+=2**(value-1);
+})
+
+//html magic which inputs variable
+
+//eample of something likened to <p1>= words[wordnum]
+
+console.log(wordnum)
+console.log(words[wordnum])
+buttonCache=new Set([]);
+}
+}
+
+
+   
 
 function connect(){
   navigator.bluetooth.requestDevice({
@@ -72,9 +105,16 @@ function handleData(event) {
     data[i] = event.target.value.getUint8(i)
     mystr += String.fromCharCode(event.target.value.getUint8(i));
   } 
+    let arr=[];
+    arr= mystr.split('');
 
-    elem.innerHTML = mystr
+    buttonCache.add(arr[1])
+  
 
+    //wont update html if the mystr data is 0, which should be the majority of the time
+
+    //array[1] is the int of button
+  
 
 
 
@@ -82,6 +122,7 @@ function handleData(event) {
   //console.log(buf[0]);
   console.log(event.target)
 }
+
 
 // disconnect function:
 function disconnect() {
