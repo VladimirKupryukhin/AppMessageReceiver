@@ -32,9 +32,16 @@ buttonCache.forEach (function(value) {
 
 //eample of something likened to <p1>= words[wordnum]
 
-console.log(wordnum)
-console.log(words[wordnum])
-buttonCache=new Set([]);
+    console.log(wordnum)
+    console.log(words[wordnum])
+
+    const elem = document.getElementById("message")
+    let prev = elem.innerHTML;
+    let newStuff = " " + words[wordnum] + "\n" + prev;
+    elem.innerHTML = newStuff
+
+
+    buttonCache=new Set([]);
 }
 }
 
@@ -131,4 +138,3 @@ function disconnect() {
     myDevice.gatt.disconnect();
   }
 }
-
