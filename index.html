@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="ble.js"></script>
 </head>
 <body>
     <header>
@@ -17,8 +18,9 @@
         <article>
             <section>          
                 <h3>Message Board</h3>
-                <button>Connect</button>
-                <button>Disconnect</button>
+                <button onClick='connect()'>Connect</button>
+                <button onClick='disconnect()'>Disconnect</button>
+                <textarea name="message" id="message" style="height: 200px; width: 200;"></textarea>
             </section>
             <section>
                 <h3>Additional Tools</h3>
